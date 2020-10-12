@@ -40,7 +40,8 @@ def move_fortwo_to_plane (person):
     if person is not None:
         terminal.append(person)
         print(' ')
-        print(f'{person} chegando ao Terminal no Fortwo')
+        print('Fortwo chegou ao Terminal')
+        print(f'{person} embarcou no Terminal')
 
     passenger = False
 
@@ -56,18 +57,19 @@ def move_fortwo_to_plane (person):
     terminal.remove(driver)
     terminal.remove(passenger)
     print(f'{passenger} e {driver} saindo do Terminal no Fortwo')
-    print(f'Ficaram no Terminal: {", ".join(terminal)}')
+    print(f'Ficou no Terminal: {", ".join(terminal)}')
     move_fortwo_to_terminal (driver, passenger)
 
 def move_fortwo_to_terminal (driver, passenger):
     print(' ')
-    print(f'{passenger} e {driver} chegando ao Avião no Fortwo')
+    print('Fortwo chegou ao Avião')
+    print(f'{passenger} e {driver} embarcaram no Avião')
 
     plane.append(passenger)
     plane.append(driver)
 
-    if len(terminal) == 8:
-        sys.exit('Todos embarcaram no avião!')
+    if len(plane) == 8:
+        sys.exit('Todos embarcaram no Avião!')
 
     if (terminal.count('oficial_1') != 0 or terminal.count('oficial_2') != 0) and plane.count('piloto') != 0:
         person_to_return = 'piloto'
@@ -81,7 +83,7 @@ def move_fortwo_to_terminal (driver, passenger):
     
     plane.remove(person_to_return)
     print(f'{person_to_return} saindo do Avião no Fortwo')
-    print(f'Ficaram no Avião: {", ".join(plane)}')
+    print(f'Ficou no Avião: {", ".join(plane)}')
     move_fortwo_to_plane (person_to_return)
 
 move_fortwo_to_plane (None)
