@@ -1,0 +1,14 @@
+o1 + o2 + piloto = piloto
+o1 + o2 + piloto + cs = chefe_servico
+o1 + o2 + piloto + c1/c2 + cs = chefe_servico
+
+c1 + c2 + cs = chefe_servico
+c1 + c2 + cs + piloto = piloto
+c1 + c2 + cs + o1/o2 + piloto = piloto
+
+c1/c2 + o1/o2 + cs = chefe_servico
+cs/c2 + o1/o2 + piloto = piloto
+c1/c2 + o1/o2 + cs + piloto = cs / piloto
+
+o1 + o2 + c1 + c2 + cs + piloto = cs / piloto
+o1 + o2 + c1 + c2 + cs + piloto + policial = policial
