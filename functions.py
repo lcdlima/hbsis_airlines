@@ -3,9 +3,9 @@ import sys
 
 plane = []
 terminal = ['piloto', 'chefe_servico', 'policial', 'oficial_1', 'oficial_2', 'comissario_1', 'comissario_2', 'presidiario']
-drivers = ['piloto', 'chefe_servico', 'policial']
 
 def choose_driver ():
+    drivers = [element for element in terminal if element in ['piloto', 'chefe_servico', 'policial']]
     n = randint(0, len(drivers) - 1)
     return drivers[n]
 
@@ -28,9 +28,8 @@ def choose_attendant_passenger ():
         return False
 
 def choose_police_passenger ():
-    options = drivers
-    options.remove('policial')
-    if terminal == ['policial', 'presidiario']:
+    options = [element for element in terminal if element in ['piloto', 'chefe_servico']]
+    if len(terminal) == 2 and terminal.count('policial') != 0 and terminal.count('presidiario') != 0:
         return 'presidiario'
     elif len(terminal) == 3:
         return options.pop()
@@ -40,7 +39,6 @@ def choose_police_passenger ():
 def move_fortwo_to_plane (person):
     if person is not None:
         terminal.append(person)
-        drivers.append(person)
         print(' ')
         print(f'{person} chegando ao Terminal no Fortwo')
 
@@ -50,13 +48,12 @@ def move_fortwo_to_plane (person):
         driver = choose_driver()
         if driver == 'piloto':
             passenger = choose_pilot_passenger()
-        if driver == 'chefe_servico':
+        elif driver == 'chefe_servico':
             passenger = choose_attendant_passenger()
-        if driver == 'policial':
+        elif driver == 'policial':
             passenger = choose_police_passenger()
     
     terminal.remove(driver)
-    drivers.remove(driver)
     terminal.remove(passenger)
     print(f'{passenger} e {driver} saindo do Terminal no Fortwo')
     print(f'Ficaram no Terminal: {", ".join(terminal)}')
@@ -76,10 +73,10 @@ def move_fortwo_to_terminal (driver, passenger):
         person_to_return = 'piloto'
     elif (terminal.count('comissario_1') != 0 or terminal.count('comissario_2') != 0) and plane.count('chefe_servico') != 0:
         person_to_return = 'chefe_servico'
-    elif terminal == ['presidiario']:
+    elif terminal == ['presidiario'] and plane.count('policial') != 0:
         person_to_return = 'policial'
     else:
-        options = [element for element in terminal if element in ['piloto', 'chefe_servico']]
+        options = [element for element in plane if element in ['piloto', 'chefe_servico']]
         person_to_return = options.pop()
     
     plane.remove(person_to_return)
