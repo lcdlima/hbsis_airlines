@@ -86,4 +86,5 @@ def move_fortwo_to_terminal (driver, passenger):
     print(f'Ficou no Avião: {", ".join(plane)}')
     move_fortwo_to_plane (person_to_return)
 
-move_fortwo_to_plane (None)
+if __name__ == '__main__':
+  move_fortwo_to_plane (None)
